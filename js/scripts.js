@@ -36,10 +36,15 @@ let pokemonRepository = (function () {
     listItem.appendChild(button);
     listContainer.appendChild(listItem)
 
-    button.addEventListener('click', function(showDetails){
-        console.log(pokemon)
+    button.addEventListener('click', function() {
+      showDetails(pokemon)
     })
   }
+
+  function showDetails(pokemon) {
+    console.log(pokemon)
+  }
+
     return {
       add: add,
       getAll: getAll,
