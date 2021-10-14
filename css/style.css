@@ -16,17 +16,10 @@
   color: white;
 }
 
-.pokemon-name {
-  background-color: blue;
-  color: white;
-  max-width: 160px;
-  padding: 12px 16px;
-  border-radius: 7px;
-  text-align: center;
-}
-
 .pokemon-list {
   list-style: none;
+  padding: 0;
+  text-align: center;
 }
 
 .poke-button {
