@@ -3,17 +3,17 @@ let pokemonRepository = (function () {
   //List of pokemon Array
   let pokemonList = [
     {
-     name: 'Bulbasaur ',
+     name: 'Bulbasaur',
      height: 2.4,
      types: ['Grass', 'Poison']
    },
     {
-     name: ' Charmander ',
+     name: 'Charmander',
      height: 2,
      types: 'Fire'
    },
     {
-     name: ' Squirtle ',
+     name: 'Squirtle',
      height: 1.8,
      types: 'Water'
    }
