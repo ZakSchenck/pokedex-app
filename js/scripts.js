@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
     {
      name: 'Bulbasaur ',
      height: 2.4,
-     types: ['Grass ', 'Poison']
+     types: ['Grass', 'Poison']
    },
     {
      name: ' Charmander ',
@@ -42,7 +42,7 @@ let pokemonRepository = (function () {
   }
 
   function showDetails(pokemon) {
-    console.log(pokemon)
+    console.log(pokemon.name)
   }
 
     return {
