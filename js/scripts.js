@@ -22,15 +22,32 @@ let pokemonRepository = (function () {
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
+
   function getAll() {
     return pokemonList
   }
-  return {
-    add: add,
-    getAll: getAll
+
+  function addListItem(pokemon) {
+    let listContainer = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button')
+    button.innerText = pokemon.name;
+    button.classList.add('poke-button');
+    listItem.appendChild(button);
+    listContainer.appendChild(listItem)
+
+    button.addEventListener('click', function(showDetails){
+        console.log(pokemon)
+    })
   }
-})();
-// for each function to write pokemon and its name/height/type
-  pokemonRepository.getAll().forEach(function(pokemon){
-  document.write( '<p class="whole-info">' + '<h2 class="pokemon-name">' + pokemon.name + '</h2>' + ' (Height: ' + pokemon.height + '\), ' + ' Types: ' + pokemon.types + '</p> <br>');
+    return {
+      add: add,
+      getAll: getAll,
+      addListItem: addListItem
+    }
+  })();
+
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon)
 });
