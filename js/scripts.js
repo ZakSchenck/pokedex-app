@@ -42,12 +42,13 @@ function showDetails(pokemon) {
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }) .then(function (json) {
-      json.results.forEach(function (item)
+      json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
           detailsUrl: item.url
         };
         add(pokemon);
+        console.log(pokemon)
       });
     }).catch(function (e) {
       console.error(e)
@@ -59,9 +60,9 @@ function showDetails(pokemon) {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageUrl = details.sprite.front_default;
-      item.height = details.height;
-      item.types = details.types;
+      item.imageUrl = details.sprite.front_default,
+      item.height = details.height,
+      item.types = details.types
     }).catch(function (e) {
       console.error(e);
     });
@@ -86,4 +87,4 @@ pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon)
 });
-)};
+});
