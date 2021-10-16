@@ -59,10 +59,6 @@ function showDetails(pokemon) {
   confirmButton.focus();
 }
 
-document.querySelector('#show-dialog').addEventListener('click', () => {
-  showDialog('Confirm action', 'Are you sure you want to do this?');
-});
-
   function hideModal() {
     modalContainer.classList.remove('is-visible');
   }
