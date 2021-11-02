@@ -92,11 +92,12 @@ img {
 }
 
 .modal-close {
-  float: right;
+  right: 10px;
+  top: 10px;
+  position: absolute;
   -webkit-appearance: none;
   border: 0;
   background: none;
-  color: #777;
   text-decoration: underline;
 }
 

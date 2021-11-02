@@ -24,7 +24,8 @@ function showDetails(pokemon) {
 
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
+    closeButtonElement.innerText = 'X';
+    closeButtonElement.style.fontSize = "40px"
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
