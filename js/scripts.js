@@ -31,15 +31,20 @@ function showDetails(pokemon) {
     titleElement.innerText = pokemon.name;
 
     let contentElement = document.createElement('p');
-    contentElement.innerText = pokemon.height;
+    contentElement.innerText = ('Height: ') + pokemon.height;
+
+    let imgElement = document.createElement('img');
+    imgElement.src = pokemon.imageUrl
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
+    modal.appendChild(imgElement)
+
 
     pokemon.types.forEach(item => {
         let contentElement = document.createElement('p');
-        contentElement.innerText = item.type.name;
+        contentElement.innerText = ('Type: ') + item.type.name;
         modal.appendChild(contentElement);
     });
 
