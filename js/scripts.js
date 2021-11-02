@@ -17,7 +17,7 @@ function showDetails(pokemon) {
   }
 
   let modalContainer = document.querySelector('#modal-container');
-  function showModal(title, text) {
+  function showModal(pokemon) {
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
     modal.classList.add('modal');
@@ -28,16 +28,28 @@ function showDetails(pokemon) {
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
+    titleElement.innerText = pokemon.name;
 
     let contentElement = document.createElement('p');
-    contentElement.innerText = text;
+    contentElement.innerText = pokemon.height;
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
+
+    pokemon.types.forEach(item => {
+        let contentElement = document.createElement('p');
+        contentElement.innerText = item.type.name;
+        modal.appendChild(contentElement);
+    });
+
     modalContainer.appendChild(modal);
     modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible');
   }
 
   function showDialog(title, text) {
@@ -57,11 +69,20 @@ function showDetails(pokemon) {
   modal.appendChild(cancelButton);
 
   confirmButton.focus();
+
+  return new Promise((resolve, reject) => {
+    cancelButton.addEventListener('click', () => {
+    hideModal();
+    reject();
+  })
+  confirmButton.addEventListener('click', () => {
+    hideModal();
+    resolve();
+  })
+  });
 }
 
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
+
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
@@ -98,10 +119,6 @@ window.addEventListener('keydown', (e) => {
     })
   }
 
-  function showDetails(pokemon) {
-    console.log(pokemon.name)
-  }
-
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -135,6 +152,7 @@ window.addEventListener('keydown', (e) => {
   function showDetails(item) {
     loadDetails(item).then(function () {
       console.log(item);
+      showModal(item);
     });
   }
 
