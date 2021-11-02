@@ -30,6 +30,7 @@ function showDetails(pokemon) {
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = pokemon.name;
+    titleElement.style.textTransform = 'uppercase';
 
     let contentElement = document.createElement('p');
     contentElement.innerText = ('Height: ') + pokemon.height;
