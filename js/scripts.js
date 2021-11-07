@@ -89,8 +89,6 @@ function showDetails(pokemon) {
   });
 }
 
-
-
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
@@ -103,27 +101,26 @@ window.addEventListener('keydown', (e) => {
     }
   });
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
-    showModal('Modal title', 'This is the modal content!');
-  });
-
-
   function getAll() {
     return pokemonList
   }
 
   function addListItem(pokemon) {
-    let listContainer = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button')
-    button.innerText = pokemon.name;
-    button.classList.add('poke-button');
-    listItem.appendChild(button);
-    listContainer.appendChild(listItem)
+      let list = document.querySelector('.pokemon-list');
+      let listItem = document.createElement('li');
+      let button = document.createElement('button');
+      button.innerText = pokemon.name;
+      button.classList.add('pokemon-button', 'btn', 'btn-primary')
+      listItem.classList.add('group-list-item')
+      button.setAttribute('data-toggle','modal')
+      button.setAttribute('data-target','#targetModal')
+      listItem.appendChild(button)
+      list.appendChild(listItem)
 
-    button.addEventListener('click', function(event) {
-      showDetails(pokemon);
-    })
+      // call showDetails function upon button click
+      button.addEventListener('click', function() {
+          showDetails(pokemon);
+      });
   }
 
   function loadList() {
@@ -155,13 +152,29 @@ window.addEventListener('keydown', (e) => {
       console.error(e);
     });
   }
+  function showDetails(pokemon) {
+       loadDetails(pokemon).then(function() {
+         let modalTitle = $('.modal-title');
+         modalTitle.text(pokemon.name);
 
-  function showDetails(item) {
-    loadDetails(item).then(function () {
-      console.log(item);
-      showModal(item);
-    });
-  }
+         let height = $('.pokemon-height');
+         let img = $('.pokemon-img');
+         height.text(`Height: ${pokemon.height}`);
+         img.attr('src', pokemon.imageURL);
+
+         let typesArr = []
+         let pokemonTypes = $('.pokemon-types')
+         pokemon.types.forEach(item => {
+         let types = item.type.name
+         typesArr.push(types)
+       });
+           let string = typesArr.join(' & ')
+           pokemonTypes.text(`Type(s): ${string}`)
+       });
+   };
+
+
+
 
     return {
       add: add,
