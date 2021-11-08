@@ -160,7 +160,7 @@ window.addEventListener('keydown', (e) => {
          let height = $('.pokemon-height');
          let img = $('.pokemon-img');
          height.text(`Height: ${pokemon.height}`);
-         img.attr('src', pokemon.imageURL);
+         img.attr('src', pokemon.imageUrl);
 
          let typesArr = []
          let pokemonTypes = $('.pokemon-types')

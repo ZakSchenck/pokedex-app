@@ -23,6 +23,11 @@ body {
   margin-right: auto;
 }
 
+.pokemon-img {
+  width: 200px;
+  height: auto;
+}
+
 .pokemon-button {
     border-radius: 10px;
     background-color: #cc4c43;
@@ -49,14 +54,14 @@ img {
 }
 
 .modal-content {
-  align-items: center;
+  text-align: center;
   text-transform: capitalize;
 }
 
 .close {
   position: absolute;
+  top: 20px;
   right: 20px;
-  bottom: 20px;
 }
 
 @media (max-width: 900px) {
