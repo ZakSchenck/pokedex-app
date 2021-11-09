@@ -1,15 +1,9 @@
+/* eslint-disable no-unused-vars */
 //IIFE function
 let pokemonRepository = (function () {
   //List of pokemon Array
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'
-
-
-function showDetails(pokemon) {
-  loadDetails(pokemon).then(function () {
-    console.log(pokemon);
-  });
-}
 
 //adds pokemon to the pokedex
   function add(pokemon) {
@@ -25,7 +19,7 @@ function showDetails(pokemon) {
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'X';
-    closeButtonElement.style.fontSize = "40px"
+    closeButtonElement.style.fontSize = '40px';
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
@@ -59,35 +53,8 @@ function showDetails(pokemon) {
     modalContainer.classList.remove('is-visible');
   }
 
-  function showDialog(title, text) {
-  showModal(title, text);
-  let modalContainer = document.querySelector('#modal-container');
-  let modal = modalContainer.querySelector('.modal');
 
-  let confirmButton = document.createElement('button');
-  confirmButton.classList.add('modal-confirm');
-  confirmButton.innerText = 'Confirm';
 
-  let cancelButton = document.createElement('button');
-  cancelButton.classList.add('modal-cancel');
-  cancelButton.innerText = 'Cancel';
-
-  modal.appendChild(confirmButton);
-  modal.appendChild(cancelButton);
-
-  confirmButton.focus();
-
-  return new Promise((resolve, reject) => {
-    cancelButton.addEventListener('click', () => {
-    hideModal();
-    reject();
-  })
-  confirmButton.addEventListener('click', () => {
-    hideModal();
-    resolve();
-  })
-  });
-}
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
@@ -171,7 +138,7 @@ window.addEventListener('keydown', (e) => {
            let string = typesArr.join(' & ')
            pokemonTypes.text(`Type(s): ${string}`)
        });
-   };
+   }
 
     return {
       add: add,
@@ -186,4 +153,19 @@ pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon)
 });
+});
+
+let pokemonSearchBar = document.querySelector('#search-input');
+
+pokemonSearchBar.addEventListener('input', function() {
+  let pokeItem = document.querySelectorAll('li');
+  let filter = pokemonSearchBar.value.toUpperCase();
+
+  pokeItem.forEach(function(pokemon){
+    if (pokemon.innerText.toUpperCase().indexOf(filter) === 0) {
+      pokemon.style.display = 'block';
+    } else {
+      pokemon.style.display = 'none';
+    }
+  });
 });
